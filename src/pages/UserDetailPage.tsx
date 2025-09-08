@@ -1,0 +1,54 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, User, Edit } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+
+const UserDetailPage = () => {
+  const { id } = useParams();
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex items-center space-x-4">
+        <Link to="/users">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Retour
+          </Button>
+        </Link>
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold text-foreground">Détails Utilisateur</h1>
+          <p className="text-muted-foreground">ID: {id}</p>
+        </div>
+        <Link to={`/users/${id}/edit`}>
+          <Button variant="outline">
+            <Edit className="h-4 w-4 mr-2" />
+            Modifier
+          </Button>
+        </Link>
+      </div>
+
+      <Card className="bg-gradient-card shadow-card border-0">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <User className="h-5 w-5 text-primary" />
+            <span>Informations utilisateur</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-12">
+            <User className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              Profil utilisateur
+            </h3>
+            <p className="text-muted-foreground">
+              Les détails de l'utilisateur seront affichés ici
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default UserDetailPage;
